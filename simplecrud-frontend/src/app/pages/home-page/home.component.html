@@ -1,0 +1,31 @@
+<div class="employee-button-group">
+  <button mat-stroked-button color="primary" (click)="createEmployee()">Create an Employee</button>
+</div>
+<mat-card class="employee-mat-card ">
+  <mat-card-content>
+    <table mat-table [dataSource]="employees">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Identification </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="phoneNbr">
+        <th mat-header-cell *matHeaderCellDef> Phone number </th>
+        <td mat-cell *matCellDef="let element"> +{{element.phoneNbr}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-stroked-button color="warn" (click)="deleteEmployee(element.id);$event.stopPropagation();">Delete</button>
+          <button mat-stroked-button color="accent" (click)="editEmployee(element);$event.stopPropagation();">Edit</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row (click)="navigateToEmployeePage(row.id)" *matRowDef="let row; columns: displayedColumns;when: isRowVisible"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

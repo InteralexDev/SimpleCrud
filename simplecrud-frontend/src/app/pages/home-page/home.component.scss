@@ -1,0 +1,20 @@
+@import "node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+.employee-mat-card {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.employee-button-group {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.modal-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

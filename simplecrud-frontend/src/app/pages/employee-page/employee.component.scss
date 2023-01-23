@@ -1,0 +1,32 @@
+@import "node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+.employee-mat-card {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.employee-button-group {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.employee-text-title {
+  color: rebeccapurple;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.employee-text-standard {
+  color:black;
+  font-style: normal;
+}
+
+.employee-text-warning {
+  color:red;
+  font-style: italic;
+}
+

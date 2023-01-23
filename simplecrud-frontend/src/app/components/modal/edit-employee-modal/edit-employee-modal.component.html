@@ -1,0 +1,38 @@
+<div class="ModalStyle">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit an Employee</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control no-focus" id="name" [(ngModel)]="name" name="name" disabled>
+      </div>
+      <div class="form-group">
+        <label for="phoneNbr">Phone number</label>
+        <div class="warning-message" *ngIf="phoneNbrRef.errors?.required && phoneNbrRef.touched && !phoneNbrRef.errors?.pattern">Phone number is required !</div>
+        <div class="warning-message" *ngIf="phoneNbrRef.errors?.pattern">Phone number must be minimum 9 characters</div>
+        <input type="text" class="form-control" id="phoneNbr" [(ngModel)]="phoneNbr" [mask]="'+00 000 00 00 00'" name="phoneNbr" pattern=".{11,}" #phoneNbrRef="ngModel" required>
+      </div>
+      <div class="form-group">
+        <label for="skills">Skills</label>
+        <div class="form-subgroup">
+          <input type="text" class="form-control" id="skills" [(ngModel)]="skill" name="skills" oninput="this.value=this.value.replace(/[^a-zA-Z+#]/g,'');">
+          <button mat-stroked-button color="primary" (click)="addSkill()" [disabled]="areSkillsFull()">Add</button>
+        </div>
+        <div class="form-subgroup">
+          <button mat-stroked-button class="mini-button" [hidden]="skill.length == 0" *ngFor="let skill of skills" color="warn" (click)="removeSkillFromList(skill);" [innerHTML]="skill + '<mat-icon> ⌧</mat-icon>'">
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea class="form-control" id="notes" [(ngModel)]="notes" name="notes"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button mat-stroked-button color="accent" (click)="matDialogModule.closeAll()">Close</button>
+    <button mat-stroked-button color="primary" (click)="editEmployee()" [disabled]="phoneNbrRef.invalid">Edit</button>
+  </div>
+</div>

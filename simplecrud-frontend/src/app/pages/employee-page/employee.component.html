@@ -1,0 +1,52 @@
+<div *ngIf="currentEmployee != null">
+  <div class="employee-button-group">
+    <button mat-stroked-button color="accent" (click)="editCurrentEmployee(this.currentEmployee);">Edit</button>
+    <button mat-stroked-button color="warn" (click)="deleteCurrentEmployee();$event.stopPropagation();">Delete</button>
+  </div>
+  <mat-card class="employee-mat-card">
+
+    <mat-card-header>
+      <mat-card-title>{{currentEmployee.name}}</mat-card-title>
+      <mat-card-subtitle>+{{currentEmployee.phoneNbr}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <label class="employee-text-title">SKILLS</label><br />
+      <ng-container [ngSwitch]="skills">
+        <div *ngSwitchCase="''">
+          <label class="employee-text-warning">This employee has no skill.</label><br />
+        </div>
+        <div *ngSwitchDefault>
+          <label class="employee-text-standard">{{skills}}</label>
+        </div>
+      </ng-container>
+
+      <label class="employee-text-title">NOTES</label> <br />
+      <ng-container [ngSwitch]="currentEmployee.notes.length">
+        <div *ngSwitchCase="0">
+          <label class="employee-text-warning">This employee has no notes.</label><br />
+        </div>
+        <div *ngSwitchDefault>
+          <label>{{currentEmployee.notes}}</label>
+        </div>
+      </ng-container>
+    </mat-card-content>
+
+  </mat-card>
+</div>
+
+<div *ngIf="currentEmployee == null && valid">
+  <mat-card class="employee-mat-card">
+    <mat-card-content *ngIf="!loading && valid">
+      <label *ngIf="!loading && valid" class="employee-text-warning">This user does not exist !</label>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="!valid && !loading">
+  <mat-card class="employee-mat-card">
+    <mat-card-content>
+      <label class="employee-text-warning">The id must be a number !</label>
+    </mat-card-content>
+  </mat-card>
+</div>
